@@ -1,0 +1,53 @@
+<div class="form__control">
+  <div class="container shadow-lg bg-dark mt-4 p-3 rounded-4">
+    <div class="display-4 p-4 pb-1 pt-0 m-0 text-info text-center">
+      Redux - NGRX
+    </div>
+    <div class="display-6 text-info pb-4 text-center">
+      Angular State Management Sol<sup>n</sup>
+    </div>
+    <div class="alert alert-light text-left rounded-4">
+      <div class="alert alert-success rounded-4" *ngIf="isSuccess$ | async">
+        Your Form values were saved
+      </div>
+      <div class="alert alert-danger rounded-4" *ngIf="isError$ | async">
+        Error Occured
+        <button class="btn btn-sm btn-danger" (click)="resetform()">
+          Reset
+        </button>
+      </div>
+      <h5 class="pt-2">Please fill your Credentials</h5>
+      <form [formGroup]="userform" (ngSubmit)="onSubmitForm()" class="pt-3">
+        <div class="form-group">
+          <label for="">Username</label>
+          <input
+            type="email"
+            class="form-control"
+            id="username"
+            [formControl]="usernameformcontrol"
+            placeholder="Enter the Username"
+          />
+          <small class="form-text text-muted"
+            >We'll Never Remember your E-mail</small
+          >
+        </div>
+        <div class="form-group">
+          <label for="">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            [formControl]="passwordformcontrol"
+            placeholder="Enter your password"
+          />
+          <small class="form-text text-muted"
+            >Provide the password for Email</small
+          >
+        </div>
+        <button (click)="onSubmitForm()" type="submit" class="btn btn-sm btn-primary mt-2">
+          Save Form
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

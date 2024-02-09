@@ -1,0 +1,58 @@
+<div class="login_parent" [style]="{ marginTop: '250px' }">
+  <p-card header="Login" class="text-center">
+    <form [formGroup]="loginform" (ngSubmit)="onLogin()">
+      <div class="m-4 form-group">
+        <span class="p-float-label">
+          <input
+            pInputText
+            id="email_login"
+            class="form-control"
+            type="text"
+            [style]="{width:'250px',height: '40px'}"
+            name="email"
+            [formControl]="emailformcontrol"
+          />
+          <label class="login_label" for="email_login">E-mail</label>
+        </span>
+        <small *ngIf="emailformcontrol.invalid && (emailformcontrol.dirty || emailformcontrol.touched)" class="block p-error">
+            <div *ngIf="emailformcontrol.errors?.['required']">Email is Required</div>
+            <div *ngIf="emailformcontrol.errors?.['email']">Email should be valid</div>
+        </small>
+      </div>
+      <div class="m-4 form-group">
+        <span class="p-float-label">
+          <input
+            pInputText
+            id="password_login"
+            type="password"
+            class="form-control"
+            [style]="{width:'250px',height: '40px'}"
+            [formControl]="passwordformcontrol"
+          />
+          <label class="login_label" for="password_login"
+            >Password</label
+          >
+        </span>
+        <small *ngIf="passwordformcontrol.invalid && (passwordformcontrol.dirty || passwordformcontrol.touched)" class="block p-error">
+            <div *ngIf="passwordformcontrol.errors?.['required']">Password is Required</div>
+            <div *ngIf="passwordformcontrol.errors?.['minLength(6)']">Password should be atleast 6 characters</div>
+        </small>
+      </div>
+      <div class="m-4 text-center">
+        <button
+        type="submit"
+          label="Sign In"
+          pButton
+          [disabled]="loginform.invalid"
+          [style]="{ backgroundColor: 'blue',}"
+          class="btn btn-primary"
+        ></button>
+        <div class="mt-4">
+          Not a member? <a routerLink="/register">Register</a>
+        </div>
+      </div>
+    </form>
+    <marquee  direction="left" [style]="{width: '300px',backgroundColor: '#f4e59a',borderRadius: '3px'}">!!Please Fill the Details Properly, in order to get the Sign in Button!!</marquee>
+  </p-card>
+  <p-toast></p-toast>
+</div>

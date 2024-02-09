@@ -1,0 +1,206 @@
+<div class="register_parent" [style]="{ marginTop: '0px' }">
+  <p-card header="Register" class="text-center ">
+    <form [formGroup]="registerForm" (ngSubmit)="submitform()">
+      <div class="m-4 form-group">
+        <span class="p-float-label">
+          <input
+            pInputText
+            id="firstN_reg"
+            class="form-control"
+            type="text"
+            [style]="{ width: '250px', height: '40px' }"
+            name="text"
+            [formControl]="firstNameFormControl"
+          />
+          <label class="login_label" for="firstN_reg">FirstName</label>
+        </span>
+        <small
+          *ngIf="
+            firstNameFormControl.invalid &&
+            (firstNameFormControl.dirty || firstNameFormControl.touched)
+          "
+          class="block p-error"
+        >
+          <div
+            *ngIf="firstNameFormControl.errors?.['required']"
+            [style]="{ fontSize: '14px' }"
+          >
+            FirstName is Required
+          </div>
+          <div
+            *ngIf="firstNameFormControl.errors?.['pattern']"
+            [style]="{ fontSize: '14px' }"
+          >
+            FirstName Should start with Alphabetic
+          </div>
+        </small>
+      </div>
+      <div class="m-4 form-group">
+        <span class="p-float-label">
+          <input
+            pInputText
+            id="lastN_reg"
+            class="form-control"
+            type="text"
+            [style]="{ width: '250px', height: '40px' }"
+            name="text"
+            [formControl]="lastNameFormControl"
+          />
+          <label class="login_label" for="lastN_reg">LastName</label>
+        </span>
+        <small
+          *ngIf="
+            lastNameFormControl.invalid &&
+            (lastNameFormControl.dirty || lastNameFormControl.touched)
+          "
+          class="block p-error"
+        >
+          <div
+            *ngIf="lastNameFormControl.errors?.['required']"
+            [style]="{ fontSize: '14px' }"
+          >
+            LastName is Required
+          </div>
+          <div
+            *ngIf="lastNameFormControl.errors?.['pattern']"
+            [style]="{ fontSize: '14px' }"
+          >
+            LastName Should start with Alphabetic
+          </div>
+        </small>
+      </div>
+      <div class="m-4 form-group">
+        <span class="p-float-label">
+          <input
+            pInputText
+            id="email_reg"
+            class="form-control"
+            type="text"
+            [style]="{ width: '250px', height: '40px' }"
+            name="email"
+            [formControl]="emailFormControl"
+          />
+          <label class="login_label" for="email_reg">E-mail</label>
+        </span>
+        <small
+          *ngIf="
+            emailFormControl.invalid &&
+            (emailFormControl.dirty || emailFormControl.touched)
+          "
+          class="block p-error"
+        >
+          <div
+            *ngIf="emailFormControl.errors?.['required']"
+            [style]="{ fontSize: '14px' }"
+          >
+            Email is Required
+          </div>
+          <div
+            *ngIf="emailFormControl.errors?.['email']"
+            [style]="{ fontSize: '14px' }"
+          >
+            Email should be valid
+          </div>
+        </small>
+      </div>
+      <div class="m-4 form-group">
+        <span class="p-float-label">
+          <input
+            pInputText
+            id="password_reg"
+            type="password"
+            class="form-control"
+            [style]="{ width: '250px', height: '40px' }"
+            [formControl]="passwordFormControl"
+          />
+          <label class="login_label" for="password_login">Password</label>
+        </span>
+        <small
+          *ngIf="
+            passwordFormControl.invalid &&
+            (passwordFormControl.dirty || passwordFormControl.touched)
+          "
+          class="block p-error"
+        >
+          <div
+            *ngIf="passwordFormControl.errors?.['required']"
+            [style]="{ fontSize: '14px' }"
+          >
+            Password is Required
+          </div>
+          <div
+            *ngIf="passwordFormControl.errors?.['minLength']"
+            [style]="{ fontSize: '14px' }"
+          >
+            Atleast 6 characters are required
+          </div>
+        </small>
+      </div>
+      <div class="m-4 form-group">
+        <span class="p-float-label">
+          <input
+            pInputText
+            id="repassword_reg"
+            class="form-control"
+            type="password"
+            [style]="{ width: '250px', height: '40px' }"
+            name="repassword"
+            [formControl]="repasswordFormControl"
+          />
+          <label class="login_label" for="repassword_reg"
+            >Confirm Password</label
+          >
+        </span>
+        <small
+          *ngIf="
+            repasswordFormControl.invalid &&
+            (repasswordFormControl.dirty || repasswordFormControl.touched)
+          "
+          class="block p-error"
+        >
+          <div
+            *ngIf="repasswordFormControl.errors?.['required']"
+            [style]="{ fontSize: '14px' }"
+          >
+            Confirm the password
+          </div>
+        </small>
+        <small
+          class="block p-error"
+          *ngIf="registerForm.errors?.['passwordMismatch'] && !repasswordFormControl.hasError('required') && !passwordFormControl.hasError('required')"
+          [style]="{ fontSize: '14px' }"
+        >
+          Password Should match
+        </small>
+      </div>
+      <div class="m-4 text-center">
+        <button
+        type="submit"
+          label="Register"
+          [style]="{
+            backgroundColor: 'blue',
+            paddingTop: '4px',
+            width: '100%'
+          }"
+          [disabled]="registerForm.invalid"
+          class="btn btn-primary"
+          pButton
+        ></button>
+      </div>
+    </form>
+    <div class="mt-4">
+      Not a member? <a routerLink="/login">Login</a>
+    </div>
+    <marquee
+      direction="left"
+      [style]="{
+        width: '300px',
+        backgroundColor: '#f4e59a',
+        borderRadius: '3px'
+      }"
+      >!!Please Fill the Details Properly, in order to get the Register
+      Button!!</marquee
+    >
+  </p-card>
+  <p-toast></p-toast>
+</div>

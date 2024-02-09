@@ -1,1 +1,130 @@
-/* You can add global styles to this file, and also import other style files */
+
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+
+.p-menubar {
+  padding: 0px;
+  border: 0px;
+  background-color: transparent;
+}
+.p-menubar .p-component {
+  padding-bottom: -4px;
+  border: 0px;
+}
+
+.p-menubar .p-menuitem-link {
+  text-decoration: none !important;
+}
+
+/* .p-element {
+  background: transparent;
+  padding-bottom: 0px;
+} */
+
+.p-element:hover{
+    background-color: #212529;
+    border-radius: 3px;
+}
+/* .p-element{
+    background-color: transparent ;
+    border-radius: 3px;
+} */
+.p-element:not(focus){
+    background-color: #212529;
+}
+
+.p-menuitem-text {
+  padding-top: 2px;
+  padding-bottom: 1px;
+
+  color: white;
+}
+.langs{
+    background-color: transparent;
+}
+.p-menubar-root-list{
+    background-color: transparent;
+}
+.p-menubar-root-list::not(:focus){
+    background-color: #212529;
+}
+.p-ripple .p-element .p-menuitem-link{
+    background-color: transparent;
+    border-radius: 3px;
+    padding-top: 0px;
+    padding-bottom: 1px;
+}
+.p-submenu-list{
+    background-color: #212529;
+    backdrop-filter: blur(1px);
+    -webkit-backdrop-filter: blur(1px);
+    padding: 0px;
+}
+
+.p-menubar-root-list:hover{
+    background-color: #212529;
+    border-radius: 3px;
+}
+.p-menuitem-link:hover {
+    background-color: #212529;
+    border-radius: 3px;
+}
+.p-menuitem-link:active{
+    background-color: #212529;
+    border-radius: 3px;
+}
+.ng-untouched{
+    padding-top: 3px;
+}
+
+/* .p-inputtext{
+    color: blue;
+} */
+
+/* .label{
+    margin-top: -20px;
+    padding: -4px;
+} */
+
+
+/* .p-inputtext .p-component .p-element .p-filled:active{
+    color: red;
+} */
+#email_login{
+    background-color: white;
+}
+#password_login{
+    background-color: white;
+}
+#firstN_reg{
+    background-color: white;
+}
+#lastN_reg{
+    background-color: white;
+}
+#email_reg{
+    background-color: white;
+}
+#password_reg{
+    background-color: white;
+}
+#repassword_reg{
+    background-color: white;
+}
+
+/* s */
+/* .p-ripple .p-element .p-button{
+    background-color: blue;
+    padding: 5px;
+} */
+/* .p-inputtext .p-component .p-element{
+    padding: 4px;
+} */
+.p-element{
+    height: 48px;
+
+}
+/* .p-card-body{
+    padding-bottom: 0px;
+
+} */

@@ -1,0 +1,12 @@
+span {
+  display: inline-block;
+}
+@import url("https://fonts.googleapis.com/css2?family=Single+Day&family=Tilt+Neon&display=swap");
+.p-header-text {
+  font-family: "Single Day", cursive;
+  font-family: "Tilt Neon", sans-serif;
+}
+.p-header{
+    padding-top: 5px;
+    padding-bottom: 1px;
+}
