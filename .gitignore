@@ -36,7 +36,9 @@ yarn-error.log
 /libpeerconnection.log
 testem.log
 /typings
+/firebase.json
 
 # System files
 .DS_Store
 Thumbs.db
+yarn.lock
