@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { User } from '../interfaces/auth';
+import { Todo, User } from '../interfaces/auth';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore'; // 
 import 'firebase/firestore';
@@ -18,8 +18,12 @@ export class AuthService {
     this.itemsCollection = this.firestore.collection<User>('Users');
   }
 
-  getItems(): Observable<any[]> {
+  getUsers(): Observable<any[]> {
     return this.firestore.collection('Users').valueChanges();
+  }
+
+  getTodo(): Observable<any[]>{
+    return this.firestore.collection('Todo').valueChanges();
   }
 
   addItem(item: User): Observable<any> {
@@ -31,8 +35,9 @@ export class AuthService {
       })
       .catch(error =>{
         observer.error(error)
-      })
+      });
     })
+    
   }
 
   updateItem(id: string, item: User): Promise<void> {

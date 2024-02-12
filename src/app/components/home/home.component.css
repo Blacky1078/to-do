@@ -1,0 +1,18 @@
+.todoinput{
+    height: 32px;
+    width: 50vw;
+    margin-bottom: 12px;
+}
+.addbutton{
+    margin-left: 22px;
+    margin-top: 16px;
+    padding: 6px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+.removebutton{
+    background: red;
+    color: white;
+    padding: 8px;
+    border-radius: 13px; 
+}

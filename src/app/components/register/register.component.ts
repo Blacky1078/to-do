@@ -11,6 +11,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
 import { Observable, timeInterval } from 'rxjs';
+import { Todo } from 'src/app/interfaces/auth';
 
 @Component({
   selector: 'app-register',
@@ -74,11 +75,16 @@ export class RegisterComponent implements OnInit {
   }
 
   submitform() {
+    const todoDetails: Todo = {
+      email: this.emailFormControl.value,
+      item: ''
+    }
     const userdetails = this.registerForm.value;
     delete userdetails.rePassword;
-    this.items$ = this.itemsService.getItems();
+    const id = userdetails.email
+    this.items$ = this.itemsService.getUsers();
     this.items$.subscribe(items => {
-      let foundUser = items.find((user)=>{
+      const foundUser = items.find((user)=>{
         return user.email === userdetails.email 
       })
       if(foundUser){
@@ -91,10 +97,7 @@ export class RegisterComponent implements OnInit {
             this.messageService.add({severity: 'success', summary: 'Success', detail: 'Registered!!' });
             this.router.navigate(['login']);
             console.log(response)
-          },error =>{ 
-            alert("Something Went Wrong!!");
-            console.log(error)
-          }
+          },
         )
       }
     });

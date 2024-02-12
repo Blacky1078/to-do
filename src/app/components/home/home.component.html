@@ -1,5 +1,32 @@
-<button
-type="button"
-(click)="logOut()"
-class="btn btn-danger">
-Log Out</button>
+<app-header></app-header>
+<div>
+  <form [formGroup]="todo" (ngSubmit)="onSSubmit()">
+    <button (click)="onAddTODOitems()" class="btn btn-primary addbutton">
+      <i class="pi pi-plus" style="font-size: 13px; padding-top: 3px"></i> TODO
+      item
+    </button>
+    <div formArrayName="todolist">
+      <div *ngFor="let item of TODOitemsArray?.controls; let i = index">
+        <div [formGroupName]="i" class="row">
+          <div class="col-4 ">
+            <div class="p-inputgroup" style="width: 20px">
+              <span class="p-inputgroup-addon">{{ i }}</span>
+              <input
+                type="text"
+                class="todoinput bg-light text-dark"
+                [formControlName]="'item'"
+                pInputText
+              />
+            </div>
+          </div>
+          <div class="col-8">
+            <i class="pi pi-trash removebutton" (click)="removeItem(i)"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="btn btn-primary">
+        Submit
+      </button>
+  </form>
+</div>

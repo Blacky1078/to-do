@@ -1,15 +1,72 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import {
+  FormArray,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
 })
-export class HomeComponent {
- constructor(private router: Router){}
- logOut(){
-  sessionStorage.clear();
-  this.router.navigate(['login'])
-}
+export class HomeComponent implements OnInit {
+  public items$: Observable<any[]> | undefined;
+  private key = sessionStorage.getItem('email');
+
+  public todo: FormGroup = this.fb.group({
+    todolist: new FormArray([]),
+  });
+
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private auth: AuthService
+  ) {}
+
+  ngOnInit(): void {}
+  get TODOitemsArray(): FormArray {
+    return this.todo.get('todolist') as FormArray;
+  }
+
+  public todoFields(): FormGroup {
+    return this.fb.group({
+      item: [''],
+    });
+  }
+
+  public onAddTODOitems() {
+    this.TODOitemsArray.push(this.todoFields());
+  }
+
+  public removeItem(i: number) {
+    this.TODOitemsArray.removeAt(i);
+  }
+
+  onSSubmit() {
+    const todoArray = this.todo.get('todolist') as FormArray;
+
+    const TodoArray = [];
+
+    for (let i = 0; i < todoArray.length; i++) {
+      const todogroup = todoArray.at(i) as FormGroup;
+
+      const todoitem = todogroup.get('item')?.value;
+
+      TodoArray?.push(todoitem);
+    }
+
+    const TodoJson = JSON.stringify(TodoArray);
+    
+  }
+
+  logOut() {
+    sessionStorage.clear();
+    this.router.navigate(['login']);
+  }
 }

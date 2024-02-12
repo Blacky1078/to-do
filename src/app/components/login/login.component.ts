@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
       password: this.passwordformcontrol
     }),
 
-    this.items$ = this.itemsService.getItems();
+    this.items$ = this.itemsService.getUsers();
   }
   get email(){
     return this.loginform.controls['email']
@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
   onLogin(){
     const email = this.emailformcontrol.value;
     const password = this.passwordformcontrol.value;
-    this.items$ = this.itemsService.getItems();
+    this.items$ = this.itemsService.getUsers();
     this.items$.subscribe(items => {
       let foundUser = items.find((user)=>{
         return user.email === email && user.password === password
@@ -63,7 +63,7 @@ export class LoginComponent implements OnInit {
         this.message.add({
           severity: 'error',
           summary: 'Error',
-          detail: 'User Registered Successfully',
+          detail: 'Credentials Invalid',
         });
       }
     });

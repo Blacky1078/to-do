@@ -5,3 +5,10 @@ export interface User {
     email: string,
     password: string
 }
+
+
+
+export interface Todo {
+    email: string,
+    item: any
+}
