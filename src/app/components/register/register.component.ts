@@ -11,7 +11,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
 import { Observable, timeInterval } from 'rxjs';
-import { Todo } from 'src/app/interfaces/auth';
+import { response } from 'express';
 
 @Component({
   selector: 'app-register',
@@ -75,33 +75,29 @@ export class RegisterComponent implements OnInit {
   }
 
   submitform() {
-    const todoDetails: Todo = {
-      email: this.emailFormControl.value,
-      item: ''
-    }
     const userdetails = this.registerForm.value;
     delete userdetails.rePassword;
-    const id = userdetails.email
-    this.items$ = this.itemsService.getUsers();
-    this.items$.subscribe(items => {
+
+    const emailv = {email: userdetails.email}
+
+    this.itemsService.getUser(emailv).subscribe((items: any[]) => {
       const foundUser = items.find((user)=>{
-        return user.email === userdetails.email 
+      return  user.email === userdetails.email 
       })
       if(foundUser){
         alert("Existing User, Redirecting....")
         this.router.navigate(['/login']); 
-      }else{
-        this.itemsService.addItem(userdetails).subscribe(
+      } else
+      {
+        this.itemsService.createUser(userdetails).subscribe(
           response =>{
             alert("Thanks for Registration!!!")
             this.messageService.add({severity: 'success', summary: 'Success', detail: 'Registered!!' });
             this.router.navigate(['login']);
-            console.log(response)
-          },
-        )
+            
+          }
+        );
       }
     });
-
-
   }
 }

@@ -1,51 +1,45 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Todo, User } from '../interfaces/auth';
-import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore'; // 
 import 'firebase/firestore';
 import { Observable, map, observeOn } from 'rxjs';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
-import { response } from 'express';
+import { Reg,log } from '../interfaces/auth';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-    private itemsCollection: AngularFirestoreCollection<User>;
+  constructor(private firestore: AngularFirestore,private http: HttpClient) {
 
-  constructor(private firestore: AngularFirestore) {
-    this.itemsCollection = this.firestore.collection<User>('Users');
   }
 
-  getUsers(): Observable<any[]> {
-    return this.firestore.collection('Users').valueChanges();
-  }
-
-  getTodo(): Observable<any[]>{
-    return this.firestore.collection('Todo').valueChanges();
-  }
-
-  addItem(item: User): Observable<any> {
-    return new Observable<any>(observer =>{
-      this.firestore.collection('Users').add(item)
-      .then(response =>{
-        observer.next(response);
-        observer.complete();
+  getUser(User_email: any): Observable<any> {
+    const url = 'http://localhost:3000/user'
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':'application/json'
       })
-      .catch(error =>{
-        observer.error(error)
-      });
-    })
-    
+    };
+    return this.http.post<any>(url,User_email,httpOptions)
   }
 
-  updateItem(id: string, item: User): Promise<void> {
-    return this.itemsCollection.doc(id).update(item);
+  createUser(userData: Reg): Observable<any> {
+    const url = 'http://localhost:3000/createUser'; // Adjust the port number if necessary
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+    return this.http.post<any>(url,userData, httpOptions);
   }
 
-  deleteItem(id: string): Promise<void> {
-    return this.itemsCollection.doc(id).delete();
-  }
+  // updateItem(id: string, item: User): Promise<void> {
+  //   return this.itemsCollection.doc(id).update(item);
+  // }
+
+  // deleteItem(id: string): Promise<void> {
+  //   return this.itemsCollection.doc(id).delete();
+  // }
 
 }
