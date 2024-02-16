@@ -1,4 +1,4 @@
-<div class="register_parent" [style]="{ marginTop: '0px' }">
+<div class="register_parent" [style]="{ marginTop: '150px' }">
   <p-card header="Register" class="text-center ">
     <form [formGroup]="registerForm" (ngSubmit)="submitform()">
       <div class="m-4 form-group">
@@ -8,7 +8,7 @@
             id="firstN_reg"
             class="form-control"
             type="text"
-            [style]="{ width: '250px', height: '40px' }"
+            [style]="{ width: '350px', height: '40px' }"
             name="text"
             [formControl]="firstNameFormControl"
           />
@@ -42,7 +42,7 @@
             id="lastN_reg"
             class="form-control"
             type="text"
-            [style]="{ width: '250px', height: '40px' }"
+            [style]="{ width: '350px', height: '40px' }"
             name="text"
             [formControl]="lastNameFormControl"
           />
@@ -76,7 +76,7 @@
             id="email_reg"
             class="form-control"
             type="text"
-            [style]="{ width: '250px', height: '40px' }"
+            [style]="{ width: '350px', height: '40px' }"
             name="email"
             [formControl]="emailFormControl"
           />
@@ -110,7 +110,7 @@
             id="password_reg"
             type="password"
             class="form-control"
-            [style]="{ width: '250px', height: '40px' }"
+            [style]="{ width: '350px', height: '40px' }"
             [formControl]="passwordFormControl"
           />
           <label class="login_label" for="password_login">Password</label>
@@ -143,7 +143,7 @@
             id="repassword_reg"
             class="form-control"
             type="password"
-            [style]="{ width: '250px', height: '40px' }"
+            [style]="{ width: '350px', height: '40px' }"
             name="repassword"
             [formControl]="repasswordFormControl"
           />
@@ -203,4 +203,5 @@
     >
   </p-card>
   <p-toast></p-toast>
+
 </div>
