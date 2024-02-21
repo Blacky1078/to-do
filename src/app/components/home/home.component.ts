@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -8,10 +9,46 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  constructor(private router: Router,private auth: AuthService) {}
+  public todo: FormGroup = this.fb.group({
+    todolist: new FormArray([]),
+  });
 
-  ngOnInit(): void {
-    // this.print();
+  constructor(private fb:FormBuilder ,private router: Router,private auth: AuthService) {}
+
+  ngOnInit(): void {}
+  get TODOitemsArray(): FormArray {
+    return this.todo.get('todolist') as FormArray;
+  }
+
+  public todoFields(): FormGroup {
+    return this.fb.group({
+      item: [''],
+    });
+  }
+
+  public onAddTODOitems() {
+    this.TODOitemsArray.push(this.todoFields());
+  }
+
+  public removeItem(i: number) {
+    this.TODOitemsArray.removeAt(i);
+  }
+
+  onSSubmit() {
+    const todoArray = this.todo.get('todolist') as FormArray;
+
+    const TodoArray = [];
+
+    for (let i = 0; i < todoArray.length; i++) {
+      const todogroup = todoArray.at(i) as FormGroup;
+
+      const todoitem = todogroup.get('item')?.value;
+
+      TodoArray?.push(todoitem);
+    }
+
+    const TodoJson = JSON.stringify(TodoArray);
+    
   }
 
   logOut() {
@@ -19,15 +56,6 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['login']);
   }
 
-  // print(){
-  //   this.auth.getItems().subscribe(
-  //     response => {
-  //       console.log(response)
-  //     },
-  //     error => {
-  //       console.log(error)
-  //     }
-  //   )
-  // }
+
   
 }
