@@ -1,6 +1,6 @@
 <app-header></app-header>
-    
-<div class="login_parent" [style]="{  }">
+<p-toast ></p-toast>
+<div class="login_parent" [style]="{'marginTop':'150px'}">
   <p-card header="Login" class="text-center">
     <form [formGroup]="loginform" (ngSubmit)="onLogin()">
       <div class="m-4 form-group">
@@ -10,7 +10,7 @@
             id="email_login"
             class="form-control"
             type="text"
-            [style]="{width:'250px',height: '40px'}"
+            [style]="{width:'350px',height: '40px'}"
             name="email"
             [formControl]="emailformcontrol"
           />
@@ -28,7 +28,7 @@
             id="password_login"
             type="password"
             class="form-control"
-            [style]="{width:'250px',height: '40px'}"
+            [style]="{width:'350px',height: '40px'}"
             [formControl]="passwordformcontrol"
           />
           <label class="login_label" for="password_login"

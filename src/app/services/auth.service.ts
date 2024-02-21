@@ -24,7 +24,7 @@ export class AuthService {
     return this.http.post<any>(url,User_email,httpOptions)
   }
 
-  createUser(userData: Reg): Observable<any> {
+  createUser(userData: any): Observable<any> {
     const url = 'http://localhost:3000/createUser'; // Adjust the port number if necessary
     const httpOptions = {
       headers: new HttpHeaders({

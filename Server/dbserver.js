@@ -15,6 +15,7 @@ app.post("/createUser", async (req, res) => {
   const lastname = req.body.lastname;
   const user = req.body.email;
   const password = req.body.password;
+  const todo = '';
 
   db.getConnection(async (err, connection) => {
     if (err) throw err;
@@ -23,13 +24,14 @@ app.post("/createUser", async (req, res) => {
 
     const search_query = mysql.format(sqlsearch, [user]);
 
-    const sqlInsert = "INSERT INTO user_table VALUES (0,?,?,?,?)";
+    const sqlInsert = "INSERT INTO user_table VALUES (0,?,?,?,?,?)";
 
     const insert_query = mysql.format(sqlInsert, [
       firstname,
       lastname,
       user,
       password,
+      todo,
     ]);
 
     await connection.query(search_query, async (err, result) => {
@@ -47,7 +49,7 @@ app.post("/createUser", async (req, res) => {
           if (err) throw err;
           console.log("--------> Created new User");
           console.log(result.insertId);
-          res.sendStatus(201);
+          return res.status(201).json(result)
         });
       }
     });
@@ -80,12 +82,15 @@ app.post("/user", async (req, res) => {
       } else {
         connection.release()
         console.log("Error");
-        return res.status(404).send("User Not Found")
+        return res.status(202).json(result)
       }
     });
   });
 });
 
+app.post("/userTodo", async (req,res)=>{
+  
+})
 const mysql = require("mysql");
 
 const db = mysql.createPool({

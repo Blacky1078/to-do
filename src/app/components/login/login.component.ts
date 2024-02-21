@@ -57,6 +57,7 @@ export class LoginComponent implements OnInit {
 
   onLogin() {
     const emailv = this.emailformcontrol.value;
+    
 
     const emailj = { email: emailv };
 
@@ -71,10 +72,14 @@ export class LoginComponent implements OnInit {
             severity: 'success',
             summary: 'Success',
             detail: 'Login Success!!!',
+            sticky: true,
+            
           });
           sessionStorage.setItem('email', emailv as string);
           sessionStorage.setItem('password', password as string);
-          this.router.navigate(['/home']);
+          setTimeout(() => {
+            this.router.navigate(['/home']);
+          }, 2000);
         } else {
           this.message.add({
             severity: 'error',

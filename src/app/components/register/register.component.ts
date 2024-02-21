@@ -10,8 +10,9 @@ import { HttpClient } from '@angular/common/http';
 import { AuthService } from 'src/app/services/auth.service';
 import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
-import { Observable, timeInterval } from 'rxjs';
+import { Observable, timeInterval, timeout } from 'rxjs';
 import { response } from 'express';
+import { TimeInterval } from 'rxjs/internal/operators/timeInterval';
 
 @Component({
   selector: 'app-register',
@@ -87,14 +88,13 @@ export class RegisterComponent implements OnInit {
       if(foundUser){
         alert("Existing User, Redirecting....")
         this.router.navigate(['/login']); 
-      } else
-      {
-        this.itemsService.createUser(userdetails).subscribe(
+      } else {
+         this.itemsService.createUser(userdetails).subscribe(
           response =>{
-            alert("Thanks for Registration!!!")
             this.messageService.add({severity: 'success', summary: 'Success', detail: 'Registered!!' });
-            this.router.navigate(['login']);
-            
+            setTimeout(()=>{
+              this.router.navigate(['login']);
+            },2000)
           }
         );
       }
