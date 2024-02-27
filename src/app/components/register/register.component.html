@@ -1,6 +1,7 @@
 <p-toast></p-toast>
+<app-header></app-header>
 <div class="register_parent" [style]="{ marginTop: '150px' }">
-  <p-card header="Register" class="text-center ">
+  <p-card header="Register" class="text-center">
     <form [formGroup]="registerForm" (ngSubmit)="submitform()">
       <div class="m-4 form-group">
         <span class="p-float-label">
@@ -130,68 +131,22 @@
             Password is Required
           </div>
           <div
-            *ngIf="passwordFormControl.errors?.['minLength']"
+            *ngIf="passwordFormControl.errors?.['minlength']"
             [style]="{ fontSize: '14px' }"
           >
             Atleast 6 characters are required
           </div>
         </small>
       </div>
-      <div class="m-4 form-group">
-        <span class="p-float-label">
-          <input
-            pInputText
-            id="repassword_reg"
-            class="form-control"
-            type="password"
-            [style]="{ width: '350px', height: '40px' }"
-            name="repassword"
-            [formControl]="repasswordFormControl"
-          />
-          <label class="login_label" for="repassword_reg"
-            >Confirm Password</label
-          >
-        </span>
-        <small
-          *ngIf="
-            repasswordFormControl.invalid &&
-            (repasswordFormControl.dirty || repasswordFormControl.touched)
-          "
-          class="block p-error"
-        >
-          <div
-            *ngIf="repasswordFormControl.errors?.['required']"
-            [style]="{ fontSize: '14px' }"
-          >
-            Confirm the password
-          </div>
-        </small>
-        <small
-          class="block p-error"
-          *ngIf="registerForm.errors?.['passwordMismatch'] && !repasswordFormControl.hasError('required') && !passwordFormControl.hasError('required')"
-          [style]="{ fontSize: '14px' }"
-        >
-          Password Should match
-        </small>
-      </div>
       <div class="m-4 text-center">
         <button
-        type="submit"
-          label="Register"
-          [style]="{
-            backgroundColor: 'blue',
-            paddingTop: '4px',
-            width: '100%'
-          }"
+          type="submit"
           [disabled]="registerForm.invalid"
-          class="btn btn-primary"
-          pButton
-        ></button>
+          
+        ><span>Register</span></button>
       </div>
     </form>
-    <div class="mt-4">
-      Not a member? <a routerLink="/login">Login</a>
-    </div>
+    <div class="mt-4">Not a member? <a routerLink="/login">Login</a></div>
     <marquee
       direction="left"
       [style]="{
@@ -204,5 +159,4 @@
     >
   </p-card>
   <p-toast></p-toast>
-
 </div>

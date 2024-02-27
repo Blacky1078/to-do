@@ -43,18 +43,14 @@
       <div class="m-4 text-center">
         <button
         type="submit"
-          label="Sign In"
-          pButton
           [disabled]="loginform.invalid"
-          [style]="{ backgroundColor: 'blue',}"
-          class="btn btn-primary"
-        ></button>
+        ><span>Sign In</span></button>
         <div class="mt-4">
           Not a member? <a routerLink="/register">Register</a>
         </div>
       </div>
     </form>
-    <marquee  direction="left" [style]="{width: '300px',backgroundColor: '#f4e59a',borderRadius: '3px'}">!!Please Fill the Details Properly, in order to get the Sign in Button!!</marquee>
+    <marquee  direction="left" [style]="{width: '300px',backgroundColor: '#f4e59a',borderRadius: '3px'}">!!Please Fill the Details Properly, to Sign In!!!</marquee>
   </p-card>
   <p-toast></p-toast>
 </div>

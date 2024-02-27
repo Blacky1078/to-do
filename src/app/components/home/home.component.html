@@ -1,8 +1,8 @@
 <app-header></app-header>
 <div>
-  <form [formGroup]="todo" (ngSubmit)="onSSubmit()">
-    <button (click)="onAddTODOitems()" class="btn btn-primary addbutton">
-      <i class="pi pi-plus" style="font-size: 13px; padding-top: 3px"></i> TODO
+  <form [formGroup]="todo">
+    <button (click)="onAddTODOitems()" class="btn btn-primary addbutton" [style]="{'margin': '22px'}">
+      <i class="pi pi-plus" style="font-size: 13px; padding-top: 3px"></i> TO-DO
       item
     </button>
     <div formArrayName="todolist">
@@ -10,7 +10,7 @@
         <div [formGroupName]="i" class="row">
           <div class="col-4 ">
             <div class="p-inputgroup" style="width: 20px">
-              <span class="p-inputgroup-addon">{{ i }}</span>
+              <span class="p-inputgroup-addon">{{ i + 1 }}</span>
               <input
                 type="text"
                 class="todoinput bg-light text-dark"
@@ -19,13 +19,13 @@
               />
             </div>
           </div>
-          <div class="col-8">
+          <div class="col-7">
             <i class="pi pi-trash removebutton" (click)="removeItem(i)"></i>
           </div>
         </div>
       </div>
     </div>
-    <button class="btn btn-primary">
+    <button (click)="onSSubmit()" class="btn btn-primary" type="submit" style="margin: 30px;margin-top: 10px;">
         Submit
       </button>
   </form>

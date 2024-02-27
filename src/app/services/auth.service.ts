@@ -34,6 +34,26 @@ export class AuthService {
     return this.http.post<any>(url,userData, httpOptions);
   }
 
+  createTODO(TODOlist: any): Observable<any>{
+    const url = 'http://localhost:3000/updateTodo'; // Adjust the port number if necessary
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+    return this.http.post<any>(url,TODOlist, httpOptions);
+  }
+
+  getTODO(User_email: any){
+    const url = 'http://localhost:3000/userTODO'
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':'application/json'
+      })
+    };
+    return this.http.post<any>(url,User_email,httpOptions)
+  }
+
   // updateItem(id: string, item: User): Promise<void> {
   //   return this.itemsCollection.doc(id).update(item);
   // }

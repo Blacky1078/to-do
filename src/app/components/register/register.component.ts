@@ -26,7 +26,6 @@ export class RegisterComponent implements OnInit {
   public lastNameFormControl!: FormControl;
   public emailFormControl!: FormControl;
   public passwordFormControl!: FormControl;
-  public repasswordFormControl!: FormControl;
   items$: Observable<any[]> | undefined;
   constructor(
     private fb: FormBuilder,
@@ -34,7 +33,11 @@ export class RegisterComponent implements OnInit {
     private itemsService: AuthService,
     private messageService: MessageService,
     private router: Router
-  ) {}
+  ) {
+    
+    
+  }
+
 
   ngOnInit(): void {
     this.firstNameFormControl = new FormControl('', [
@@ -59,27 +62,23 @@ export class RegisterComponent implements OnInit {
       Validators.minLength(6),
     ]);
 
-    this.repasswordFormControl = new FormControl('', [Validators.required]);
-
     this.registerForm = this.fb.group(
       {
         firstname: this.firstNameFormControl,
         lastname: this.lastNameFormControl,
         email: this.emailFormControl,
         password: this.passwordFormControl,
-        rePassword: this.repasswordFormControl,
       },
-      {
-        validators: passwordMatchValidator,
-      }
+  
     );
+
   }
 
   submitform() {
     const userdetails = this.registerForm.value;
-    delete userdetails.rePassword;
 
-    const emailv = {email: userdetails.email}
+    const emailv = {email: userdetails.email};
+    console.log(userdetails)
 
     this.itemsService.getUser(emailv).subscribe((items: any[]) => {
       const foundUser = items.find((user)=>{

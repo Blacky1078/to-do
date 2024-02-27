@@ -11,8 +11,12 @@
     padding-bottom: 2px;
 }
 .removebutton{
-    background: red;
     color: white;
-    padding: 8px;
-    border-radius: 13px; 
+    background: red;
+    border-radius: 26px;
+    padding: 7px;
+}
+.p-inputgroup-addon{
+    height: 32px;
+    margin-left: 111px;
 }

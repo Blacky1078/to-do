@@ -12,7 +12,7 @@ import { Reg, log } from 'src/app/interfaces/auth';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { response } from 'express';
+
 
 @Component({
   selector: 'app-login',
@@ -64,15 +64,19 @@ export class LoginComponent implements OnInit {
     const password = this.passwordformcontrol.value;
     console.log(emailj);
     this.itemsService.getUser(emailj).subscribe((response) => {
-      if (response == 'User Not Found') {
-        console.log('Sorry');
+    if (response.length === 0) {
+      this.message.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: 'User Does Not Exist',
+        
+      });
       } else {
         if (response[0].password == password) {
           this.message.add({
             severity: 'success',
             summary: 'Success',
             detail: 'Login Success!!!',
-            sticky: true,
             
           });
           sessionStorage.setItem('email', emailv as string);
