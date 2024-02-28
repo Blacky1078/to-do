@@ -1,16 +1,18 @@
 <p-toast></p-toast>
 <app-header></app-header>
 <div class="register_parent" [style]="{ marginTop: '150px' }">
-  <p-card header="Register" class="text-center">
+  <p-card class="text-center" [style]="{'background-color': '#111827'}">
+    <h3 [style]="{'background-color': '#111827','font-family': 'Playfair Display, serif', 'margin-bottom': '0px','color': 'white'}">Register</h3>
     <form [formGroup]="registerForm" (ngSubmit)="submitform()">
       <div class="m-4 form-group">
         <span class="p-float-label">
           <input
             pInputText
             id="firstN_reg"
+            autocomplete="First Name"
             class="form-control"
             type="text"
-            [style]="{ width: '350px', height: '40px' }"
+            [style]="{ 'font-family': 'Anta, sans-serif', 'height': '40px', 'background': '#111827', 'width': '350px', 'color': 'white', 'font-weight': '500' }"
             name="text"
             [formControl]="firstNameFormControl"
           />
@@ -43,8 +45,9 @@
             pInputText
             id="lastN_reg"
             class="form-control"
+            autocomplete="Last Name"
             type="text"
-            [style]="{ width: '350px', height: '40px' }"
+            [style]="{ 'font-family': 'Anta, sans-serif', 'height': '40px', 'background': '#111827', 'width': '350px', 'color': 'white', 'font-weight': '500' }"
             name="text"
             [formControl]="lastNameFormControl"
           />
@@ -77,8 +80,9 @@
             pInputText
             id="email_reg"
             class="form-control"
+            autocomplete="E-Mail"
             type="text"
-            [style]="{ width: '350px', height: '40px' }"
+            [style]="{ 'font-family': 'Anta, sans-serif', 'height': '40px', 'background': '#111827', 'width': '350px', 'color': 'white', 'font-weight': '500' }"
             name="email"
             [formControl]="emailFormControl"
           />
@@ -111,8 +115,9 @@
             pInputText
             id="password_reg"
             type="password"
+            autocomplete="Password"
             class="form-control"
-            [style]="{ width: '350px', height: '40px' }"
+            [style]="{ 'font-family': 'Anta, sans-serif', 'height': '40px', 'background': '#111827', 'width': '350px', 'color': 'white', 'font-weight': '500' }"
             [formControl]="passwordFormControl"
           />
           <label class="login_label" for="password_login">Password</label>
@@ -138,21 +143,18 @@
           </div>
         </small>
       </div>
-      <div class="m-4 text-center">
-        <button
-          type="submit"
-          [disabled]="registerForm.invalid"
-          
-        ><span>Register</span></button>
+      <div class="m-4">
+        <app-button [title]="buttonTitle" [isButttonDisabled]="isDisabled"></app-button>
       </div>
     </form>
-    <div class="mt-4">Not a member? <a routerLink="/login">Login</a></div>
+    <div class="mt-4 text-light">Not a member? <a routerLink="/login">Login</a></div>
     <marquee
       direction="left"
       [style]="{
-        width: '300px',
+        width: '391px',
         backgroundColor: '#f4e59a',
-        borderRadius: '3px'
+        borderRadius: '3px',
+        marginTop:'15px'
       }"
       >!!Please Fill the Details Properly, in order to get the Register
       Button!!</marquee

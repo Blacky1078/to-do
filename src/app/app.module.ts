@@ -25,6 +25,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { NgxMarqueeModule } from 'ngx-marquee';
 import { HttpClientModule } from '@angular/common/http'
 import { MessageService } from 'primeng/api';
+import { ButtonComponent } from './components/button/button.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { MessageService } from 'primeng/api';
     LoginComponent,
     RegisterComponent,
     HomeComponent,
+    ButtonComponent,
   ],
   imports: [
     BrowserModule,

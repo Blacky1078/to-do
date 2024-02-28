@@ -22,9 +22,11 @@ import { MessageService } from 'primeng/api';
 })
 export class LoginComponent implements OnInit {
   public loginform!: FormGroup;
+  public titleButton = "Log In"
   public emailformcontrol!: FormControl;
   public passwordformcontrol!: FormControl;
   items$: Observable<Reg[]> | undefined;
+  public username!: string;
   filteredUsers$: Observable<Reg[]> | undefined;
   constructor(
     private fb: FormBuilder,
@@ -47,6 +49,9 @@ export class LoginComponent implements OnInit {
       email: this.emailformcontrol,
       password: this.passwordformcontrol,
     });
+
+
+
   }
   get email() {
     return this.loginform.controls['email'];

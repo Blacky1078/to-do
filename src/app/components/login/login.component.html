@@ -1,8 +1,9 @@
 <app-header></app-header>
 <p-toast ></p-toast>
 <div class="login_parent" [style]="{'marginTop':'150px'}">
-  <p-card header="Login" class="text-center">
-    <form [formGroup]="loginform" (ngSubmit)="onLogin()">
+  <p-card class="text-center" [style]="{'background-color': '#111827'}">
+    <h3 [style]="{'background-color': '#111827','font-family': 'Playfair Display, serif', 'margin-bottom': '0px','color': 'white'}">Login</h3>
+    <form [formGroup]="loginform" (ngSubmit)="onLogin()" >
       <div class="m-4 form-group">
         <span class="p-float-label">
           <input
@@ -10,7 +11,7 @@
             id="email_login"
             class="form-control"
             type="text"
-            [style]="{width:'350px',height: '40px'}"
+            [style]="{ 'font-family': 'Anta, sans-serif', 'height': '40px', 'background': '#111827', 'width': '350px', 'color': 'white', 'font-weight': '500' }"
             name="email"
             [formControl]="emailformcontrol"
           />
@@ -26,9 +27,10 @@
           <input
             pInputText
             id="password_login"
+            autocomplete="Password"
             type="password"
             class="form-control"
-            [style]="{width:'350px',height: '40px'}"
+            [style]="{ 'font-family': 'Anta, sans-serif', 'height': '40px', 'background': '#111827', 'width': '350px', 'color': 'white', 'font-weight': '500' }"
             [formControl]="passwordformcontrol"
           />
           <label class="login_label" for="password_login"
@@ -41,11 +43,8 @@
         </small>
       </div>
       <div class="m-4 text-center">
-        <button
-        type="submit"
-          [disabled]="loginform.invalid"
-        ><span>Sign In</span></button>
-        <div class="mt-4">
+       <app-button [title]="titleButton"></app-button>
+        <div class="mt-4 text-light">
           Not a member? <a routerLink="/register">Register</a>
         </div>
       </div>

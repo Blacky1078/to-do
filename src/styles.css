@@ -2,6 +2,10 @@
 @import "primeng/resources/themes/lara-light-blue/theme.css";
 @import "primeng/resources/primeng.css";
 @import 'primeicons/primeicons.css';
+@import url('https://fonts.googleapis.com/css2?family=Anta&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anta&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anta&family=Homemade+Apple&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
 
 .p-menubar {
   padding: 0px;
@@ -91,7 +95,7 @@
 /* .p-inputtext .p-component .p-element .p-filled:active{
     color: red;
 } */
-#email_login{
+/* #email_login{
     background-color: white;
 }
 #password_login{
@@ -111,7 +115,7 @@
 }
 #repassword_reg{
     background-color: white;
-}
+} */
 
 /* s */
 /* .p-ripple .p-element .p-button{
@@ -129,5 +133,36 @@
     padding-bottom: 0px;
 
 } */
+
+input:-internal-autofill-selected {
+    appearance: menulist-button;
+    background-image: none !important;
+    background-color: black !important; /* Change background color to black */
+    color: black !important; /* Change text color to black */
+}
+
+.p-toast .p-toast-message.p-toast-message-success {
+    background: #212529;
+    border: solid #74fcc6;
+    border-width: 0 0 0 6px;
+    color: #74fcc6;
+
+}
+
+.p-toast .p-toast-message.p-toast-message-success .p-toast-message-icon, .p-toast .p-toast-message.p-toast-message-success .p-toast-icon-close {
+    color: #1ea97c;
+}
+
+.p-toast .p-toast-message.p-toast-message-success .p-toast-message-icon, .p-toast .p-toast-message.p-toast-message-success .p-toast-icon-success {
+    color: #1ea97c;
+}
+
+.p-toast .p-toast-message.p-toast-message-error {
+    background: #212529;
+    border: solid #ff5757;
+    border-width: 0 0 0 6px;
+    color: #ff5757;
+}
+
 
 

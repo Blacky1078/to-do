@@ -21,6 +21,9 @@ import { TimeInterval } from 'rxjs/internal/operators/timeInterval';
   providers: [MessageService],
 })
 export class RegisterComponent implements OnInit {
+[x: string]: any;
+ public buttonTitle = "Register"
+ public isDisabled = false
   public registerForm!: FormGroup;
   public firstNameFormControl!: FormControl;
   public lastNameFormControl!: FormControl;

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 // import {MatIconModule} from '@angular/material/icon'
@@ -11,6 +11,7 @@ import { MenuItem } from 'primeng/api';
 })
 export class HeaderComponent {
     public isUserLoggedIn!: boolean;
+    @Input() username!: string;
     
 
 
