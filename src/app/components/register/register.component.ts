@@ -7,7 +7,7 @@ import {
 } from '@angular/forms';
 import { passwordMatchValidator } from '../shared/password-match.directive';
 import { HttpClient } from '@angular/common/http';
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService } from 'src/app/auth.service';
 import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
 import { Observable, timeInterval, timeout } from 'rxjs';
@@ -21,9 +21,9 @@ import { TimeInterval } from 'rxjs/internal/operators/timeInterval';
   providers: [MessageService],
 })
 export class RegisterComponent implements OnInit {
-[x: string]: any;
- public buttonTitle = "Register"
- public isDisabled = false
+  public Desc = 'Hello There!!!, Please Fill the Form';
+  public buttonTitle = 'Register';
+  public isDisabled = false;
   public registerForm!: FormGroup;
   public firstNameFormControl!: FormControl;
   public lastNameFormControl!: FormControl;
@@ -36,11 +36,7 @@ export class RegisterComponent implements OnInit {
     private itemsService: AuthService,
     private messageService: MessageService,
     private router: Router
-  ) {
-    
-    
-  }
-
+  ) {}
 
   ngOnInit(): void {
     this.firstNameFormControl = new FormControl('', [
@@ -65,40 +61,38 @@ export class RegisterComponent implements OnInit {
       Validators.minLength(6),
     ]);
 
-    this.registerForm = this.fb.group(
-      {
-        firstname: this.firstNameFormControl,
-        lastname: this.lastNameFormControl,
-        email: this.emailFormControl,
-        password: this.passwordFormControl,
-      },
-  
-    );
-
+    this.registerForm = this.fb.group({
+      firstname: this.firstNameFormControl,
+      lastname: this.lastNameFormControl,
+      email: this.emailFormControl,
+      password: this.passwordFormControl,
+    });
   }
 
   submitform() {
     const userdetails = this.registerForm.value;
 
-    const emailv = {email: userdetails.email};
-    console.log(userdetails)
+    const emailv = { email: userdetails.email };
+    console.log(userdetails);
 
     this.itemsService.getUser(emailv).subscribe((items: any[]) => {
-      const foundUser = items.find((user)=>{
-      return  user.email === userdetails.email 
-      })
-      if(foundUser){
-        alert("Existing User, Redirecting....")
-        this.router.navigate(['/login']); 
+      const foundUser = items.find((user) => {
+        return user.email === userdetails.email;
+      });
+      if (foundUser) {
+        alert('Existing User, Redirecting....');
+        this.router.navigate(['/login']);
       } else {
-         this.itemsService.createUser(userdetails).subscribe(
-          response =>{
-            this.messageService.add({severity: 'success', summary: 'Success', detail: 'Registered!!' });
-            setTimeout(()=>{
-              this.router.navigate(['login']);
-            },2000)
-          }
-        );
+        this.itemsService.createUser(userdetails).subscribe((response) => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: 'Registered!!',
+          });
+          setTimeout(() => {
+            this.router.navigate(['login']);
+          }, 2000);
+        });
       }
     });
   }

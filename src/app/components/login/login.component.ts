@@ -9,10 +9,9 @@ import {
 import { NgIf } from '@angular/common';
 import { Observable, map } from 'rxjs';
 import { Reg, log } from 'src/app/interfaces/auth';
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService } from 'src/app/auth.service';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
-
 
 @Component({
   selector: 'app-login',
@@ -21,8 +20,9 @@ import { MessageService } from 'primeng/api';
   providers: [MessageService],
 })
 export class LoginComponent implements OnInit {
+  public Desc = 'Welcome back, User!!!';
   public loginform!: FormGroup;
-  public titleButton = "Log In"
+  public titleButton = 'Log In';
   public emailformcontrol!: FormControl;
   public passwordformcontrol!: FormControl;
   items$: Observable<Reg[]> | undefined;
@@ -49,9 +49,6 @@ export class LoginComponent implements OnInit {
       email: this.emailformcontrol,
       password: this.passwordformcontrol,
     });
-
-
-
   }
   get email() {
     return this.loginform.controls['email'];
@@ -62,27 +59,24 @@ export class LoginComponent implements OnInit {
 
   onLogin() {
     const emailv = this.emailformcontrol.value;
-    
 
     const emailj = { email: emailv };
 
     const password = this.passwordformcontrol.value;
     console.log(emailj);
     this.itemsService.getUser(emailj).subscribe((response) => {
-    if (response.length === 0) {
-      this.message.add({
-        severity: 'error',
-        summary: 'Error',
-        detail: 'User Does Not Exist',
-        
-      });
+      if (response.length === 0) {
+        this.message.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'User Does Not Exist',
+        });
       } else {
         if (response[0].password == password) {
           this.message.add({
             severity: 'success',
             summary: 'Success',
             detail: 'Login Success!!!',
-            
           });
           sessionStorage.setItem('email', emailv as string);
           sessionStorage.setItem('password', password as string);

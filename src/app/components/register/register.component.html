@@ -1,6 +1,10 @@
 <p-toast></p-toast>
 <app-header></app-header>
-<div class="register_parent" [style]="{ marginTop: '150px' }">
+<div style="margin: 50px;margin-left:418px; margin-right: 390px">
+  <app-typewriter [Desc]="Desc">
+  </app-typewriter>
+</div>
+<div class="register_parent" [style]="{ marginTop: '100px' }">
   <p-card class="text-center" [style]="{'background-color': '#111827'}">
     <h3 [style]="{'background-color': '#111827','font-family': 'Playfair Display, serif', 'margin-bottom': '0px','color': 'white'}">Register</h3>
     <form [formGroup]="registerForm" (ngSubmit)="submitform()">

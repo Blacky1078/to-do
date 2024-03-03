@@ -26,6 +26,13 @@ import { NgxMarqueeModule } from 'ngx-marquee';
 import { HttpClientModule } from '@angular/common/http'
 import { MessageService } from 'primeng/api';
 import { ButtonComponent } from './components/button/button.component';
+import { DialogModule } from 'primeng/dialog';
+import { CalendarModule } from 'primeng/calendar';
+import { TypewriterComponent } from './components/typewriter/typewriter.component';
+import { CreateTodoComponent } from './components/create-todo/create-todo.component';
+import { Button2Component } from './components/button-2/button-2.component';
+import { TableModule } from 'primeng/table';
+import { TableComponent } from './components/table/table.component';
 
 @NgModule({
   declarations: [
@@ -36,14 +43,20 @@ import { ButtonComponent } from './components/button/button.component';
     RegisterComponent,
     HomeComponent,
     ButtonComponent,
+    TypewriterComponent,
+    CreateTodoComponent,
+    Button2Component,
+    TableComponent,
   ],
   imports: [
     BrowserModule,
     ToastModule,
+    CalendarModule,
     AppRoutingModule,
+    TableModule,
     InputTextModule,
     HttpClientModule,
-  
+    DialogModule,
     ButtonModule,
     BrowserAnimationsModule,
     NgxMarqueeModule,

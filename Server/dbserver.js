@@ -4,18 +4,14 @@ const cors = require("cors");
 const express = require("express");
 const app = express();
 
-app.use(cors())
+app.use(cors());
 app.use(express.json());
-
-
-
 
 app.post("/createUser", async (req, res) => {
   const firstname = req.body.firstname;
   const lastname = req.body.lastname;
   const user = req.body.email;
   const password = req.body.password;
-  const todo = '';
 
   db.getConnection(async (err, connection) => {
     if (err) throw err;
@@ -24,14 +20,13 @@ app.post("/createUser", async (req, res) => {
 
     const search_query = mysql.format(sqlsearch, [user]);
 
-    const sqlInsert = "INSERT INTO user_table VALUES (0,?,?,?,?,?)";
+    const sqlInsert = "INSERT INTO user_table VALUES (0,?,?,?,?)";
 
     const insert_query = mysql.format(sqlInsert, [
       firstname,
       lastname,
       user,
       password,
-      todo,
     ]);
 
     await connection.query(search_query, async (err, result) => {
@@ -49,22 +44,20 @@ app.post("/createUser", async (req, res) => {
           if (err) throw err;
           console.log("--------> Created new User");
           console.log(result.insertId);
-          return res.status(201).json(result)
+          return res.status(201).json(result);
         });
       }
     });
   });
 });
-
-
 
 app.post("/user", async (req, res) => {
   const email = req.body.email;
 
   db.getConnection(async (err, connection) => {
     if (err) {
-      console.error("Method Not Allowed")
-    };
+      console.error("Method Not Allowed");
+    }
 
     const sqlsearch = "SELECT * FROM user_table WHERE email = ?";
 
@@ -72,96 +65,137 @@ app.post("/user", async (req, res) => {
 
     await connection.query(search_query, async (err, result) => {
       if (err) {
-        console.error("Method Not Allowed")
-      };
+        console.error("Method Not Allowed");
+      }
 
       if (result.length > 0) {
-        connection.release()
-        console.log("------> Search Results",result);
-        return res.status(200).json(result)
+        connection.release();
+        console.log("------> Search Results", result);
+        return res.status(200).json(result);
       } else {
-        connection.release()
+        connection.release();
         console.log("Error");
-        return res.status(200).json(result)
+        return res.status(200).json(result);
       }
     });
   });
 });
 
-app.post("/updateTodo", async (req,res)=>{
-  const user = req.body.email
+app.post("/updateTodo", async (req, res) => {
+  const user = req.body.email;
   const todo = req.body.todo;
 
-  const UpdatedValue = JSON.stringify(todo)
+  const UpdatedValue = JSON.stringify(todo);
 
-  db.getConnection(async (err, connection) =>{
-    if(err) throw err;
+  db.getConnection(async (err, connection) => {
+    if (err) throw err;
 
     const sqlsearch = "SELECT * FROM user_table WHERE email = ?";
 
-    const search_query = mysql.format(sqlsearch,[user]);
+    const search_query = mysql.format(sqlsearch, [user]);
 
-    const sqlupdate = "UPDATE user_table SET todo = ? WHERE email = ?"
+    const sqlupdate = "UPDATE user_table SET todo = ? WHERE email = ?";
 
-    const updatequery = mysql.format(sqlupdate,[
-      UpdatedValue,
-      user
-    ]);
+    const updatequery = mysql.format(sqlupdate, [UpdatedValue, user]);
 
-    await connection.query(search_query, async (err,result) =>{
-      if(err) throw err;
+    await connection.query(search_query, async (err, result) => {
+      if (err) throw err;
 
       console.log("--------> Search Results");
       console.log(result.length);
 
-
-      if(result.length == 0){
+      if (result.length == 0) {
         connection.release();
         console.log("---------->User Doesn't Exist");
         res.sendStatus(409);
-      }else{
+      } else {
         await connection.query(updatequery, (err, result) => {
           connection.release();
           if (err) throw err;
           console.log("--------> Created new TODO");
           console.log(result.insertId);
-          return res.status(201).json(result)
+          return res.status(201).json(result);
         });
       }
-    })
-  })
-})
+    });
+  });
+});
 
-app.post("/userTODO", async (req, res) => {
+app.post("/createUserTodo", async (req, res) => {
+  const email = req.body.email;
+  const title = req.body.title;
+  const desc = req.body.desc;
+  const dT = req.body.dT;
+  const status = req.body.status;
+
+  db.getConnection(async (err, connection) => {
+    if (err) {
+      console.error("Method Not Allowed");
+    }
+
+    const sqlsearch = "SELECT * FROM user_todo WHERE email = ?";
+
+    const search_query = mysql.format(sqlsearch, [email]);
+
+    const sqlInsert = "INSERT INTO user_todo VALUES (0,?,?,?,?,?)";
+
+    const insert_query = mysql.format(sqlInsert, [email, title, desc, dT, status]);
+
+    await connection.query(search_query, async (err, result) => {
+      if (err) {
+        console.error("Method Not Allowed");
+      }
+
+      if (result.length > 0) {
+        console.log("-------> User Todo Does Exist");
+        await connection.query(insert_query, (err, result) => {
+          connection.release();
+          if (err) throw err;
+          console.log("-------> Craete Another User Todo");
+          return res.status(201).json(result);
+        });
+      } else {
+        console.log("-------> New User Todo");
+        await connection.query(insert_query, (err, result) => {
+          connection.release();
+          // if (err) throw err;
+          console.log("-------> Craete New User Todo");
+          return res.status(201).json(result);
+        });
+      }
+    });
+  });
+});
+
+app.post("/userTodo", async (req, res) => {
   const email = req.body.email;
 
   db.getConnection(async (err, connection) => {
     if (err) {
-      console.error("Method Not Allowed")
-    };
+      console.error("Method Not Allowed");
+    }
 
-    const sqlsearch = "SELECT todo FROM user_table WHERE email = ?";
+    const sqlsearch = "SELECT * FROM user_todo WHERE email = ?";
 
     const search_query = mysql.format(sqlsearch, [email]);
 
     await connection.query(search_query, async (err, result) => {
       if (err) {
-        console.error("Method Not Allowed")
-      };
+        console.error("Method Not Allowed");
+      }
 
       if (result.length > 0) {
-        connection.release()
-        console.log("------> Search Results",result);
-        return res.status(200).json(result)
+        connection.release();
+        console.log("------> Search Results", result);
+        return res.status(200).json(result);
       } else {
-        connection.release()
+        connection.release();
         console.log("Error");
-        const resss = JSON.parse(result)
-        return res.status(202).json(resss)
+        return res.status(200).json(result);
       }
     });
   });
-})
+});
 const mysql = require("mysql");
 
 const db = mysql.createPool({
@@ -177,8 +211,6 @@ db.getConnection((err, connection) => {
   if (err) throw err;
   console.log("DB connected Successfull: " + connection.threadId);
 });
-
-
 
 const port = 3000;
 

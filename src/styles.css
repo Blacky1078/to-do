@@ -5,6 +5,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Anta&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Anta&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Anta&family=Homemade+Apple&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anta&family=Homemade+Apple&family=Pacifico&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anta&family=Homemade+Apple&family=Marhey:wght@300..700&family=Pacifico&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Satisfy&display=swap');
 
 
 .p-menubar {
@@ -34,9 +36,9 @@
     background-color: transparent ;
     border-radius: 3px;
 } */
-.p-element:not(focus){
+/* .p-element:not(focus){
     background-color: #212529;
-}
+} */
 
 .p-menuitem-text {
   padding-top: 2px;
@@ -163,6 +165,58 @@ input:-internal-autofill-selected {
     border-width: 0 0 0 6px;
     color: #ff5757;
 }
+/* 
+[type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) {
+    cursor: pointer;
+    background: white;
+} */
+
+.p-dialog-header-close-icon .p-element:hover {
+    background-color: white;
+}
+
+.p-dialog-header-close-icon.p-element {
+    background-color: white;
+}
+
+.p-link :hover{
+    background-color: white;
+}
+
+.p-dialog .p-dialog-header .p-dialog-header-icon {
+
+    /* background: white; */
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+    margin-top: 10px;
+    font-weight: 500;
+    background: #c1c3f4;
+    
+}
+
+.p-dialog .p-dialog-header .p-dialog-header-icon .p-element{
+    height: 30px;
+    background: #c1c3f4;
+}
+
+.p-dialog .p-dialog-header .p-dialog-header-icon .p-link .p-element{
+    height: 30px;
+}
 
 
+.p-dialog .p-dialog-header{
+    padding-bottom: 0px;
+    padding-top: 10px;
+    background: #c1c3f4;
+}
 
+.p-dialog .p-dialog-content {
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    background: #c1c3f4;
+}
+
+/* .p-datatable-wrapper{
+    width: 920px;
+} */
