@@ -1,13 +1,12 @@
-
 @import "primeng/resources/themes/lara-light-blue/theme.css";
 @import "primeng/resources/primeng.css";
-@import 'primeicons/primeicons.css';
-@import url('https://fonts.googleapis.com/css2?family=Anta&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Anta&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Anta&family=Homemade+Apple&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Anta&family=Homemade+Apple&family=Pacifico&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Anta&family=Homemade+Apple&family=Marhey:wght@300..700&family=Pacifico&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Satisfy&display=swap');
-
+@import "primeicons/primeicons.css";
+@import url("https://fonts.googleapis.com/css2?family=Anta&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Anta&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Anta&family=Homemade+Apple&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Anta&family=Homemade+Apple&family=Pacifico&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Anta&family=Homemade+Apple&family=Marhey:wght@300..700&family=Pacifico&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Satisfy&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Anta&family=Homemade+Apple&family=Marhey:wght@300..700&family=Ojuju:wght@200..800&family=Pacifico&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Satisfy&display=swap');
 
 .p-menubar {
   padding: 0px;
@@ -28,10 +27,10 @@
   padding-bottom: 0px;
 } */
 
-.p-element:hover{
-    background-color: #212529;
-    border-radius: 3px;
-}
+/* .p-element:hover {
+  background-color: #212529;
+  border-radius: 3px;
+} */
 /* .p-element{
     background-color: transparent ;
     border-radius: 3px;
@@ -46,42 +45,42 @@
 
   color: white;
 }
-.langs{
-    background-color: transparent;
+.langs {
+  background-color: transparent;
 }
-.p-menubar-root-list{
-    background-color: transparent;
+.p-menubar-root-list {
+  background-color: transparent;
 }
-.p-menubar-root-list::not(:focus){
-    background-color: #212529;
+.p-menubar-root-list::not(:focus) {
+  background-color: #212529;
 }
-.p-ripple .p-element .p-menuitem-link{
-    background-color: transparent;
-    border-radius: 3px;
-    padding-top: 0px;
-    padding-bottom: 1px;
+.p-ripple .p-element .p-menuitem-link {
+  background-color: transparent;
+  border-radius: 3px;
+  padding-top: 0px;
+  padding-bottom: 1px;
 }
-.p-submenu-list{
-    background-color: #212529;
-    backdrop-filter: blur(1px);
-    -webkit-backdrop-filter: blur(1px);
-    padding: 0px;
+.p-submenu-list {
+  background-color: #212529;
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
+  padding: 0px;
 }
 
-.p-menubar-root-list:hover{
-    background-color: #212529;
-    border-radius: 3px;
+.p-menubar-root-list:hover {
+  background-color: #212529;
+  border-radius: 3px;
 }
 .p-menuitem-link:hover {
-    background-color: #212529;
-    border-radius: 3px;
+  background-color: #212529;
+  border-radius: 3px;
 }
-.p-menuitem-link:active{
-    background-color: #212529;
-    border-radius: 3px;
+.p-menuitem-link:active {
+  background-color: #212529;
+  border-radius: 3px;
 }
-.ng-untouched{
-    padding-top: 3px;
+.ng-untouched {
+  padding-top: 3px;
 }
 
 /* .p-inputtext{
@@ -92,7 +91,6 @@
     margin-top: -20px;
     padding: -4px;
 } */
-
 
 /* .p-inputtext .p-component .p-element .p-filled:active{
     color: red;
@@ -127,43 +125,43 @@
 /* .p-inputtext .p-component .p-element{
     padding: 4px;
 } */
-.p-element{
-    height: 48px;
-
-}
+/* .p-element {
+  height: 48px;
+} */
 /* .p-card-body{
     padding-bottom: 0px;
 
 } */
 
 input:-internal-autofill-selected {
-    appearance: menulist-button;
-    background-image: none !important;
-    background-color: black !important; /* Change background color to black */
-    color: black !important; /* Change text color to black */
+  appearance: menulist-button;
+  background-image: none !important;
+  background-color: black !important; /* Change background color to black */
+  color: black !important; /* Change text color to black */
 }
 
 .p-toast .p-toast-message.p-toast-message-success {
-    background: #212529;
-    border: solid #74fcc6;
-    border-width: 0 0 0 6px;
-    color: #74fcc6;
-
+  background: #212529;
+  border: solid #74fcc6;
+  border-width: 0 0 0 6px;
+  color: #74fcc6;
 }
 
-.p-toast .p-toast-message.p-toast-message-success .p-toast-message-icon, .p-toast .p-toast-message.p-toast-message-success .p-toast-icon-close {
-    color: #1ea97c;
+.p-toast .p-toast-message.p-toast-message-success .p-toast-message-icon,
+.p-toast .p-toast-message.p-toast-message-success .p-toast-icon-close {
+  color: #1ea97c;
 }
 
-.p-toast .p-toast-message.p-toast-message-success .p-toast-message-icon, .p-toast .p-toast-message.p-toast-message-success .p-toast-icon-success {
-    color: #1ea97c;
+.p-toast .p-toast-message.p-toast-message-success .p-toast-message-icon,
+.p-toast .p-toast-message.p-toast-message-success .p-toast-icon-success {
+  color: #1ea97c;
 }
 
 .p-toast .p-toast-message.p-toast-message-error {
-    background: #212529;
-    border: solid #ff5757;
-    border-width: 0 0 0 6px;
-    color: #ff5757;
+  background: #212529;
+  border: solid #ff5757;
+  border-width: 0 0 0 6px;
+  color: #ff5757;
 }
 /* 
 [type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) {
@@ -172,51 +170,93 @@ input:-internal-autofill-selected {
 } */
 
 .p-dialog-header-close-icon .p-element:hover {
-    background-color: white;
+  background-color: white;
 }
 
 .p-dialog-header-close-icon.p-element {
-    background-color: white;
+  background-color: white;
 }
 
-.p-link :hover{
-    background-color: white;
+.p-link :hover {
+  background-color: white;
 }
 
 .p-dialog .p-dialog-header .p-dialog-header-icon {
-
-    /* background: white; */
-    padding-bottom: 0px;
-    margin-bottom: 0px;
-    margin-top: 10px;
-    font-weight: 500;
-    background: #c1c3f4;
-    
+  /* background: white; */
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+  margin-top: 10px;
+  font-weight: 500;
+  background: #c1c3f4;
 }
 
-.p-dialog .p-dialog-header .p-dialog-header-icon .p-element{
-    height: 30px;
-    background: #c1c3f4;
+.p-dialog .p-dialog-header .p-dialog-header-icon .p-element {
+  height: 30px;
+  background: #c1c3f4;
 }
 
-.p-dialog .p-dialog-header .p-dialog-header-icon .p-link .p-element{
-    height: 30px;
+.p-dialog .p-dialog-header .p-dialog-header-icon .p-link .p-element {
+  height: 30px;
 }
 
-
-.p-dialog .p-dialog-header{
-    padding-bottom: 0px;
-    padding-top: 10px;
-    background: #c1c3f4;
+.p-dialog .p-dialog-header {
+  padding-bottom: 0px;
+  padding-top: 10px;
+  background: #c1c3f4;
 }
 
 .p-dialog .p-dialog-content {
-    padding-left: 0px;
-    padding-right: 0px;
-    padding-bottom: 0px;
-    background: #c1c3f4;
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-bottom: 0px;
+  background: #c1c3f4;
 }
 
 /* .p-datatable-wrapper{
     width: 920px;
 } */
+
+.p-paginator {
+  border-radius: 0px;
+}
+.p-ripple
+  .p-element
+  .p-paginator-first
+  .p-paginator-element
+  .p-link
+  .p-disabled {
+  height: -1px;
+}
+
+.p-ripple
+  .p-element
+  .p-paginator-prev
+  .p-paginator-element
+  .p-link
+  .p-disabled {
+  height: -1px;
+}
+.p-paginator-page .p-paginator-element {
+  height: -1px;
+}
+.p-ripple
+  .p-element
+  .p-paginator-next
+  .p-paginator-element
+  .p-link
+  .p-disabled {
+  height: -1px;
+}
+
+.p-ripple
+  .p-element
+  .p-paginator-last
+  .p-paginator-element
+  .p-link
+  .p-disabled {
+  height: -1px;
+}
+
+.p-dropdown-items{
+    padding-left: 0px;
+}

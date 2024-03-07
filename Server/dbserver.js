@@ -121,8 +121,19 @@ app.post("/updateTodo", async (req, res) => {
   });
 });
 
+function tokenGenerator() {
+  const keys =
+    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let id = '';
+  for (let i = 0; i < 12; i++) {
+    id += keys.charAt(Math.floor(Math.random() * keys.length));
+  }
+  return id;
+}
+
 app.post("/createUserTodo", async (req, res) => {
   const email = req.body.email;
+  const id = tokenGenerator()
   const title = req.body.title;
   const desc = req.body.desc;
   const dT = req.body.dT;
@@ -137,9 +148,9 @@ app.post("/createUserTodo", async (req, res) => {
 
     const search_query = mysql.format(sqlsearch, [email]);
 
-    const sqlInsert = "INSERT INTO user_todo VALUES (0,?,?,?,?,?)";
+    const sqlInsert = "INSERT INTO user_todo VALUES (0,?,?,?,?,?,?)";
 
-    const insert_query = mysql.format(sqlInsert, [email, title, desc, dT, status]);
+    const insert_query = mysql.format(sqlInsert, [id,email, title, desc, dT, status]);
 
     await connection.query(search_query, async (err, result) => {
       if (err) {
@@ -188,6 +199,46 @@ app.post("/userTodo", async (req, res) => {
         connection.release();
         console.log("------> Search Results", result);
         return res.status(200).json(result);
+      } else {
+        connection.release();
+        console.log("Error");
+        return res.status(200).json(result);
+      }
+    });
+  });
+});
+
+app.post("/editUserTodo", async (req, res) => {
+  const email = req.body.email;
+  const title = req.body.title;
+  const desc = req.body.desc;
+  const status = req.body.status;
+
+  db.getConnection(async (err, connection) => {
+    if (err) {
+      console.error("Method Not Allowed");
+    }
+
+    const sqlsearch = "SELECT * FROM user_todo WHERE email = ?";
+
+    const search_query = mysql.format(sqlsearch, [email]);
+
+    const sqlupdate = "UPDATE `user_todo` SET `title` = ?, `desc` = ?, `status` = ? WHERE `email` = ?;"
+
+    const update_query = mysql.format(sqlupdate,[title,desc,status,email])
+
+    await connection.query(search_query, async (err, result) => {
+      if (err) {
+        console.error("Method Not Allowed");
+      }
+
+      if (result.length > 0) {
+        await connection.query(update_query, (err, result) => {
+          connection.release();
+          if (err) throw err;
+          console.log("-------> Edited A User Todo");
+          return res.status(201).json(result);
+        });
       } else {
         connection.release();
         console.log("Error");

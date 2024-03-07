@@ -10,11 +10,12 @@ export interface log {
 }
 
 export type createtodo = {
-    email: string,
-    title: string,
-    desc: string,
-    dT: string,
-    status: string
+    id?: any
+    email?: string,
+    title?: string,
+    desc?: string,
+    dT?: string,
+    status?: string
 }
 
 export interface Column {

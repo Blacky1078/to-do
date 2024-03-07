@@ -27,10 +27,14 @@ export class HomeComponent implements OnInit {
     this.auth.getUser(this.muserEmail).subscribe((response) => {
       this.username = response[0].firstname;
     });
+    const tt: string | null = sessionStorage.getItem('selected_data')
+    console.log(tt)
   }
 
   logOut() {
     sessionStorage.clear();
     this.router.navigate(['login']);
   }
+
+
 }

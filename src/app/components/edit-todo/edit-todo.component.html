@@ -1,0 +1,136 @@
+<p-dialog
+[closable]="false"
+[responsive]="false"
+  header="Edit A To-Do Item"
+  [(visible)]="visible"
+  [style]="{ width: '50vw', height: '47vh' }"
+>
+  <p-card
+    [style]="{ margin: '0px', background: '#999ce1', 'border-radius': '15px' }"
+  >
+    <form [formGroup]="todoForm" (ngSubmit)="todoEdit()" >
+      <div class="row">
+        <div class="col-6">
+          <span class="p-float-label">
+            <input
+              type="text"
+              pInputText
+              id="email_todo"
+              [disabled]="true"
+              class="form-control"
+              [style]="{
+                'font-family': 'Anta, sans-serif',
+                'margin-top': '5px',
+                height: '40px',
+                background: 'white',
+                width: '325px',
+                color: 'black',
+                'font-weight': '500'
+              }"
+              name="email_todo"
+              [formControl]="email_todoformcontrol"
+            />
+            <label class="login_label" for="email_todo">E-mail</label>
+          </span>
+        </div>
+        <div class="col-6">
+          <span class="p-float-label">
+            <input
+              type="text"
+              pInputText
+              id="title_todo"
+              class="form-control"
+              [style]="{
+                'margin-left': '5px',
+                'font-family': 'Anta, sans-serif',
+                'margin-top': '5px',
+                height: '40px',
+                background: 'white',
+                width: '325px',
+                color: 'black',
+                'font-weight': '500'
+              }"
+              name="title_todo"
+              [formControl]="title_todoformcontrol"
+            />
+            <label class="login_label" for="title_todo">Title</label>
+          </span>
+        </div>
+      </div>
+      <br />
+      <div>
+        <span class="p-float-label">
+          <input
+            type="text"
+            pInputText
+            id="description_todo"
+            class="form-control"
+            [style]="{
+              'font-family': 'Anta, sans-serif',
+              'margin-top': '5px',
+              height: '40px',
+              background: 'white',
+              width: '720px',
+              color: 'black',
+              'font-weight': '500'
+            }"
+            name="description_todo"
+            [formControl]="Desc_todoformcontrol"
+          />
+          <label class="login_label" for="description_todo">Description</label>
+        </span>
+      </div>
+      <br />
+      <div class="row">
+        <div class="col-6">
+          <span class="p-float-label">
+            <p-calendar
+              appendTo="body"
+              [formControl]="DateTIme_todoformcontrol"
+              id="dT_todo"
+              [showTime]="true"
+              [showSeconds]="true"
+              [style]="{
+                'font-family': 'Anta, sans-serif',
+                'margin-top': '8px',
+                height: '40px',
+                width: '325px',
+                color: 'black',
+                'font-weight': '500',
+                'border-radius': '0pxp'
+              }"
+            ></p-calendar>
+            <label class="login_label" for="dT_todo" class="margin-top:2px">Date & Time</label>
+          </span>
+        </div>
+        <div class="col-6">
+          <span class="p-float-label">
+            <input
+              type="text"
+              pInputText
+              [formControl]="Statusformcontrol"
+              id="Status_todo"
+              class="form-control"
+              [style]="{
+                'margin-left': '5px',
+                'font-family': 'Anta, sans-serif',
+                'margin-top': '5px',
+                height: '40px',
+                background: 'white',
+                width: '325px',
+                color: 'black',
+                'font-weight': '500'
+              }"
+              name=""
+            />
+            <label class="login_label" for="dT_todo">Status</label>
+          </span>
+        </div>
+      </div>
+      <div style="margin-top: 25px">
+        <app-button-2 [label]="formSubmit"></app-button-2>
+        <button (click)="onclick()"  class="bbtn">Cancel</button>
+      </div>
+    </form>
+  </p-card>
+</p-dialog>

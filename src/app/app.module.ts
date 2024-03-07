@@ -33,6 +33,7 @@ import { CreateTodoComponent } from './components/create-todo/create-todo.compon
 import { Button2Component } from './components/button-2/button-2.component';
 import { TableModule } from 'primeng/table';
 import { TableComponent } from './components/table/table.component';
+import { EditTodoComponent } from './components/edit-todo/edit-todo.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { TableComponent } from './components/table/table.component';
     CreateTodoComponent,
     Button2Component,
     TableComponent,
+    EditTodoComponent,
   ],
   imports: [
     BrowserModule,

@@ -17,6 +17,7 @@ import { AuthService } from 'src/app/auth.service';
 export class CreateTodoComponent implements OnInit {
   public formSubmit = 'Submit';
   visible: boolean = false;
+  public todo_id!: any;
   public email_todoformcontrol!: FormControl;
   public title_todoformcontrol!: FormControl;
   public Desc_todoformcontrol!: FormControl;
@@ -24,7 +25,12 @@ export class CreateTodoComponent implements OnInit {
   public Statusformcontrol!: FormControl;
   public todoForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, private auth: AuthService,private router: Router,private message: MessageService) {}
+  constructor(
+    private fb: FormBuilder,
+    private auth: AuthService,
+    private router: Router,
+    private message: MessageService
+  ) {}
 
   ngOnInit(): void {
     this.email_todoformcontrol = new FormControl('', [
@@ -47,6 +53,7 @@ export class CreateTodoComponent implements OnInit {
     this.visible = true;
   }
 
+
   reloadPage(): void {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     const currentUrl = this.router.url + '?';
@@ -56,13 +63,10 @@ export class CreateTodoComponent implements OnInit {
     });
   }
 
-
-
   todoSubmit() {
     const value = this.todoForm.value;
     this.auth.createTODO(value).subscribe((response) => {
       console.log(response);
-      
     });
     this.message.add({
       severity: 'success',
