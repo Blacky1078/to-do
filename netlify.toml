@@ -1,0 +1,2 @@
+[build]
+  command = "npm install $NPM_INSTALL_FLAGS && npm run build"
