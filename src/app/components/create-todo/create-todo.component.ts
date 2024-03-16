@@ -71,7 +71,7 @@ export class CreateTodoComponent implements OnInit {
     this.message.add({
       severity: 'success',
       summary: 'Success',
-      detail: 'Created A To do Successfully',
+      detail: 'Created A To-Do Successfully, Please Wait...',
     });
     setTimeout(() => {
       this.reloadPage();

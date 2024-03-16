@@ -7,6 +7,17 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+
+
+function tokenGenerator() {
+  const keys = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  let id = "";
+  for (let i = 0; i < 12; i++) {
+    id += keys.charAt(Math.floor(Math.random() * keys.length));
+  }
+  return id;
+}
+
 app.post("/createUser", async (req, res) => {
   const firstname = req.body.firstname;
   const lastname = req.body.lastname;
@@ -121,19 +132,9 @@ app.post("/updateTodo", async (req, res) => {
   });
 });
 
-function tokenGenerator() {
-  const keys =
-    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-  let id = '';
-  for (let i = 0; i < 12; i++) {
-    id += keys.charAt(Math.floor(Math.random() * keys.length));
-  }
-  return id;
-}
-
 app.post("/createUserTodo", async (req, res) => {
   const email = req.body.email;
-  const id = tokenGenerator()
+  const id = tokenGenerator();
   const title = req.body.title;
   const desc = req.body.desc;
   const dT = req.body.dT;
@@ -150,7 +151,14 @@ app.post("/createUserTodo", async (req, res) => {
 
     const sqlInsert = "INSERT INTO user_todo VALUES (0,?,?,?,?,?,?)";
 
-    const insert_query = mysql.format(sqlInsert, [id,email, title, desc, dT, status]);
+    const insert_query = mysql.format(sqlInsert, [
+      id,
+      email,
+      title,
+      desc,
+      dT,
+      status,
+    ]);
 
     await connection.query(search_query, async (err, result) => {
       if (err) {
@@ -213,19 +221,26 @@ app.post("/editUserTodo", async (req, res) => {
   const title = req.body.title;
   const desc = req.body.desc;
   const status = req.body.status;
+  const todo_id = req.body.todo_id;
 
   db.getConnection(async (err, connection) => {
     if (err) {
       console.error("Method Not Allowed");
     }
 
-    const sqlsearch = "SELECT * FROM user_todo WHERE email = ?";
+    const sqlsearch = "SELECT * FROM user_todo WHERE todo_id = ?";
 
-    const search_query = mysql.format(sqlsearch, [email]);
+    const search_query = mysql.format(sqlsearch, [todo_id]);
 
-    const sqlupdate = "UPDATE `user_todo` SET `title` = ?, `desc` = ?, `status` = ? WHERE `email` = ?;"
+    const sqlupdate =
+      "UPDATE `user_todo` SET `title` = ?, `desc` = ?, `status` = ? WHERE `todo_id` = ?;";
 
-    const update_query = mysql.format(sqlupdate,[title,desc,status,email])
+    const update_query = mysql.format(sqlupdate, [
+      title,
+      desc,
+      status,
+      todo_id,
+    ]);
 
     await connection.query(search_query, async (err, result) => {
       if (err) {

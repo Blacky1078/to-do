@@ -10,7 +10,7 @@ export interface log {
 }
 
 export type createtodo = {
-    id?: any
+    id?: any,
     email?: string,
     title?: string,
     desc?: string,

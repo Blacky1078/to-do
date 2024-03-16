@@ -33,6 +33,7 @@ export class EditTodoComponent implements OnInit {
   public todoForm!: FormGroup;
   public rowData: any;
   public formcancel: any = 'Cancel';
+  public todoID!: any | null;
 
   showDialog() {}
 
@@ -65,9 +66,17 @@ export class EditTodoComponent implements OnInit {
   }
 
   todoEdit() {
-    const value = this.todoForm.value;
-    console.log(value);
-    this.auth.editTODO(value).subscribe((response) => {
+    this.rowData = sessionStorage.getItem('selected_todo');
+    const extendedValue = {
+      dT: this.todoForm.value.dT,
+      todo_id: JSON.parse(this.rowData).todo_id,
+      desc: this.todoForm.value.desc,
+      email: this.todoForm.value.email,
+      status: this.todoForm.value.status,
+      title: this.todoForm.value.title
+    }
+    console.log(extendedValue);
+    this.auth.editTODO(extendedValue).subscribe((response) => {
       console.log(response);
     });
     this.message.add({
@@ -77,7 +86,7 @@ export class EditTodoComponent implements OnInit {
     });
     setTimeout(() => {
       this.reloadPage();
-      sessionStorage.setItem('selected_todo', JSON.stringify(value));
+      sessionStorage.setItem('selected_todo', JSON.stringify(extendedValue));
     }, 1000);
   }
 

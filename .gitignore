@@ -43,3 +43,6 @@ testem.log
 Thumbs.db
 yarn.lock
 .txt
+
+# Local Netlify folder
+.netlify
