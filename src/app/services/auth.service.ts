@@ -1,4 +1,8 @@
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpHeaders,
+} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import 'firebase/compat/firestore'; //
 import 'firebase/firestore';
@@ -7,14 +11,18 @@ import {
   AngularFirestore,
   AngularFirestoreCollection,
 } from '@angular/fire/compat/firestore';
-import { Reg, log } from './interfaces/auth';
+// import { Reg, log } from '../interfaces/auth';
 import { MessageService } from 'primeng/api';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private firestore: AngularFirestore, private http: HttpClient,private message: MessageService) {}
+  constructor(
+    private firestore: AngularFirestore,
+    private http: HttpClient,
+    private message: MessageService
+  ) {}
 
   getUser(User_email: any): Observable<any> {
     const url = 'http://localhost:3000/user';
@@ -23,7 +31,9 @@ export class AuthService {
         'Content-Type': 'application/json',
       }),
     };
-    return this.http.post<any>(url, User_email, httpOptions).pipe(catchError(this.handleError))
+    return this.http
+      .post<any>(url, User_email, httpOptions)
+      .pipe(catchError(this.handleError));
   }
 
   createUser(userData: any): Observable<any> {
@@ -33,7 +43,9 @@ export class AuthService {
         'Content-Type': 'application/json',
       }),
     };
-    return this.http.post<any>(url, userData, httpOptions).pipe(catchError(this.handleError))
+    return this.http
+      .post<any>(url, userData, httpOptions)
+      .pipe(catchError(this.handleError));
   }
 
   createTODO(userTodo: any): Observable<any> {
@@ -43,7 +55,9 @@ export class AuthService {
         'Content-Type': 'application/json',
       }),
     };
-    return this.http.post<any>(url, userTodo, httpOptions).pipe(catchError(this.handleError))
+    return this.http
+      .post<any>(url, userTodo, httpOptions)
+      .pipe(catchError(this.handleError));
   }
 
   getTODO(User_email: any) {
@@ -53,7 +67,9 @@ export class AuthService {
         'Content-Type': 'application/json',
       }),
     };
-    return this.http.post<any>(url, User_email, httpOptions).pipe(catchError(this.handleError))
+    return this.http
+      .post<any>(url, User_email, httpOptions)
+      .pipe(catchError(this.handleError));
   }
   editTODO(User_todo: any) {
     const url = 'http://localhost:3000/EditUserTodo';
@@ -62,21 +78,20 @@ export class AuthService {
         'Content-Type': 'application/json',
       }),
     };
-    return this.http.post<any>(url, User_todo, httpOptions).pipe(catchError(this.handleError))
+    return this.http
+      .post<any>(url, User_todo, httpOptions)
+      .pipe(catchError(this.handleError));
   }
 
   private handleError(error: HttpErrorResponse) {
     let errorMessage = 'Unknown error occurred';
     if (error.error instanceof ErrorEvent) {
-     
       errorMessage = `Error: ${error.error.message}`;
     } else {
-   
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
-    
-    alert("Backend Server Error ---->  " + errorMessage)
+
+    alert('Backend Server Error ---->  ' + errorMessage);
     return throwError(errorMessage);
   }
- 
 }

@@ -7,7 +7,7 @@ import {
 } from '@angular/forms';
 import { passwordMatchValidator } from '../shared/password-match.directive';
 import { HttpClient } from '@angular/common/http';
-import { AuthService } from 'src/app/auth.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
 import { Observable, timeInterval, timeout } from 'rxjs';

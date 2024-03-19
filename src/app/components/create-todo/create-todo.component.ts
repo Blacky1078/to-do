@@ -7,7 +7,7 @@ import {
 } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { AuthService } from 'src/app/auth.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-create-todo',
@@ -52,7 +52,6 @@ export class CreateTodoComponent implements OnInit {
   showDialog() {
     this.visible = true;
   }
-
 
   reloadPage(): void {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;

@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
     todolist: new FormArray([]),
   });
 
-  constructor(private fb:FormBuilder ,private router: Router,private auth: AuthService) {}
+  constructor(private fb:FormBuilder ,private router: Router) {}
 
   ngOnInit(): void {}
   get TODOitemsArray(): FormArray {

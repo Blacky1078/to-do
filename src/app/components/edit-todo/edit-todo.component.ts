@@ -7,7 +7,7 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { AuthService } from 'src/app/auth.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-edit-todo',
@@ -73,8 +73,8 @@ export class EditTodoComponent implements OnInit {
       desc: this.todoForm.value.desc,
       email: this.todoForm.value.email,
       status: this.todoForm.value.status,
-      title: this.todoForm.value.title
-    }
+      title: this.todoForm.value.title,
+    };
     console.log(extendedValue);
     this.auth.editTODO(extendedValue).subscribe((response) => {
       console.log(response);

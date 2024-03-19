@@ -9,7 +9,7 @@ import {
 import { NgIf } from '@angular/common';
 import { Observable, map } from 'rxjs';
 import { Reg, log } from 'src/app/interfaces/auth';
-import { AuthService } from 'src/app/auth.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 
