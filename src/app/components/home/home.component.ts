@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { response } from 'express';
-import { MessageService } from 'primeng/api';
-import { AuthService } from 'src/app/auth.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -11,24 +9,46 @@ import { AuthService } from 'src/app/auth.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  public userEmail = sessionStorage.getItem('email');
-  public muserEmail = { email: this.userEmail };
+  public todo: FormGroup = this.fb.group({
+    todolist: new FormArray([]),
+  });
 
-  public username!: string;
+  constructor(private fb:FormBuilder ,private router: Router,private auth: AuthService) {}
 
-  constructor(
-    private message: MessageService,
-    private fb: FormBuilder,
-    private router: Router,
-    private auth: AuthService
-  ) {}
+  ngOnInit(): void {}
+  get TODOitemsArray(): FormArray {
+    return this.todo.get('todolist') as FormArray;
+  }
 
-  ngOnInit(): void {
-    this.auth.getUser(this.muserEmail).subscribe((response) => {
-      this.username = response[0].firstname;
+  public todoFields(): FormGroup {
+    return this.fb.group({
+      item: [''],
     });
-    const tt: string | null = sessionStorage.getItem('selected_data')
-    console.log(tt)
+  }
+
+  public onAddTODOitems() {
+    this.TODOitemsArray.push(this.todoFields());
+  }
+
+  public removeItem(i: number) {
+    this.TODOitemsArray.removeAt(i);
+  }
+
+  onSSubmit() {
+    const todoArray = this.todo.get('todolist') as FormArray;
+
+    const TodoArray = [];
+
+    for (let i = 0; i < todoArray.length; i++) {
+      const todogroup = todoArray.at(i) as FormGroup;
+
+      const todoitem = todogroup.get('item')?.value;
+
+      TodoArray?.push(todoitem);
+    }
+
+    const TodoJson = JSON.stringify(TodoArray);
+    
   }
 
   logOut() {
@@ -37,4 +57,5 @@ export class HomeComponent implements OnInit {
   }
 
 
+  
 }

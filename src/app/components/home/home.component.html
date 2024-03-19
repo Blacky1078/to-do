@@ -1,12 +1,33 @@
-<app-header [username]="username"></app-header>
+<app-header></app-header>
 <div>
-  <app-create-todo></app-create-todo>
-  <app-edit-todo></app-edit-todo>
-  <!-- <button (click)="onclick()">Click Here</button> -->
+  <form [formGroup]="todo" (ngSubmit)="onSSubmit()">
+    <button (click)="onAddTODOitems()" class="btn btn-primary addbutton">
+      <i class="pi pi-plus" style="font-size: 13px; padding-top: 3px"></i> TODO
+      item
+    </button>
+    <div formArrayName="todolist">
+      <div *ngFor="let item of TODOitemsArray?.controls; let i = index">
+        <div [formGroupName]="i" class="row">
+          <div class="col-4 ">
+            <div class="p-inputgroup" style="width: 20px">
+              <span class="p-inputgroup-addon">{{ i }}</span>
+              <input
+                type="text"
+                class="todoinput bg-light text-dark"
+                [formControlName]="'item'"
+                pInputText
+              />
+            </div>
+          </div>
+          <div class="col-8">
+            <i class="pi pi-trash removebutton" (click)="removeItem(i)"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="btn btn-primary">
+        Submit
+      </button>
+  </form>
 </div>
-<div [style]="{width: '50vw',height: '50vh'}">
- 
-</div>
-<app-table></app-table>
 <p-toast></p-toast>
-<button class="btn btn-warning" (click)="email()">Email Me</button>
