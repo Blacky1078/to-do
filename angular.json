@@ -6,7 +6,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "To-Do": {
+    "Dropship": {
       "projectType": "application",
       "schematics": {},
       "root": "",
